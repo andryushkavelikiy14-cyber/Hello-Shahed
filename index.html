@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hello Shahed</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <!-- Главное меню -->
+    <div id="main-menu">
+        <div class="menu-bg"></div>
+        <div class="menu-content">
+            <h1 class="glitch" data-text="HELLO SHAHED">HELLO SHAHED</h1>
+            <p class="subtitle">Выживи в городе или стань угрозой.</p>
+            
+            <div class="menu-buttons">
+                <button class="btn primary" onclick="Game.start('single')">ОДИНОЧНАЯ ИГРА</button>
+                <button class="btn primary" onclick="Game.start('multi')">МНОГОПОЛЬЗОВАТЕЛЬСКАЯ</button>
+                <button class="btn secondary" onclick="Game.showDroneMenu()">ИГРАТЬ ЗА ШАХЕДА</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Оверлей для фиксации мыши -->
+    <div id="click-to-play" style="display: none;">
+        <h2>Нажмите, чтобы играть</h2>
+        <p>Мышка будет захвачена для управления</p>
+    </div>
+
+    <!-- Меню выбора Шахеда -->
+    <div id="drone-select-menu" style="display: none;">
+        <h2>Выберите Шахед</h2>
+        <div class="drone-options">
+            <div class="drone-card" onclick="Game.startAsDrone()">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/HESA_Shahed_136_%28cropped%29.jpg/320px-HESA_Shahed_136_%28cropped%29.jpg">
+                <p>Shahed-136</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Игровой интерфейс (HUD) -->
+    <div id="game-ui" style="display: none;">
+        <div id="crosshair">
+            <div class="crosshair-ring"></div>
+            <div class="crosshair-dot"></div>
+            <svg class="crosshair-progress" width="100" height="100">
+                <circle cx="50" cy="50" r="45" stroke="red" stroke-width="5" fill="none" stroke-dasharray="283" stroke-dashoffset="283" id="target-progress"></circle>
+            </svg>
+        </div>
+        
+        <div id="weapon-info">РПГ-7 | Заряжено</div>
+        <div id="drone-hud" style="display: none;">ВЫ - ШАХЕД. Летите в цель.</div>
+        
+        <div id="joystick-zone-left" class="joystick-zone" style="display:none;">
+            <div class="joystick-base"><div class="joystick-knob"></div></div>
+        </div>
+        <div id="joystick-zone-right" class="joystick-zone" style="display:none;">
+            <div class="joystick-base"><div class="joystick-knob"></div></div>
+        </div>
+    </div>
+
+    <div id="death-screen" style="display: none;">
+        <div class="death-content">
+            <div class="skull-icon">☠️</div>
+            <h2>ВЫ УМЕРЛИ</h2>
+            <button class="btn primary" onclick="Game.respawn()">ВЕРНУТЬСЯ В ЛОББИ</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
